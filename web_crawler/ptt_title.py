@@ -8,7 +8,7 @@ web.encoding='utf-8' # 避免中文亂碼
 soup = BeautifulSoup(web.text, "html.parser")
 titles = soup.find_all('div', class_='title')     # 取得 class 為 title 的 div 內容
 output = '' # 建立 output 變數
-#print(titles)
+print(titles)
 for i in titles:
     if i.find('a') != None: # 判斷如果不為 None
         # print(i.find('a').get_text()) # 取得 div 裡 a 的內容，使用 get_text() 取得文字
