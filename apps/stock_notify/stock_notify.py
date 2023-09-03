@@ -18,6 +18,7 @@ alert_condtions = [
         'th_type':'percent'
     }
 ]
+
 def reset_alert_conditions(cond:dict):
     print("reset_alert_conditions")
     for i in cond:
@@ -38,6 +39,7 @@ def download_stock():
         return stock
     else:
         return False
+
 def check_stock_alert(stock:dict)->str:
     #print(stock)
     msg = ''
@@ -58,7 +60,6 @@ def check_stock_alert(stock:dict)->str:
                     val = round((z-y)/y*100, 2)
                 else:
                     val = round(z-y,2)
-                    val = -250
                 print(f"ch = {ch}, val = {val}, {j['th_type']}, th_min_en = {j['th_min_en']}, th_max_en = {j['th_max_en']}")
                 if j['th_max_en'] == True:
                     k = 0
@@ -131,16 +132,15 @@ def dowload_stock_tmr():
     stock = download_stock()
     if stock!= False:
         print("下載成功")
-        # cur_state_in_stock = is_in_trade_datetime(stock)
-        cur_state_in_stock = True
+        cur_state_in_stock = is_in_trade_datetime(stock)
         if cur_state_in_stock == True:
-            # if  pre_state_in_stock == False:
-            reset_alert_conditions(alert_condtions)
+            if  pre_state_in_stock == False:
+                reset_alert_conditions(alert_condtions)
             msg = check_stock_alert(stock)
             print(msg)
             if msg != '':
                 send_stock_msg_line_notify(msg)
-        # pre_state_in_stock = cur_state_in_stock
+        pre_state_in_stock = cur_state_in_stock
     else:
         print("下載失敗")
     t = threading.Timer(5, dowload_stock_tmr)
