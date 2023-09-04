@@ -145,7 +145,7 @@ def dowload_stock_tmr():
         pre_state_in_stock = cur_state_in_stock
     else:
         print("下載失敗")
-    t = threading.Timer(5, dowload_stock_tmr)
+    t = threading.Timer(30, dowload_stock_tmr)
     t.start()
 
 def main():
