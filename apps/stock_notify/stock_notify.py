@@ -3,33 +3,30 @@ import threading
 alert_condtions = [
     {
         'ch':'t00.tw',
-        'th_max':[[300, 200, 100, 50],[False]*4],
+        'th_max':[[300, 200, 100, 50],[]],
         'th_max_en':True,
-        'th_min':[[-300, -200, -100, -50],[False]*4],
+        'th_min':[[-300, -200, -100, -50],[]],
         'th_min_en':True,
         'th_type':'point'
     },
     {
         'ch':'00878.tw',
-        'th_max':[[1, 0.5, 0.25],[False]*3],
+        'th_max':[[1, 0.5, 0.25],[]],
         'th_max_en':True,
-        'th_min':[[-1, -0.5, -0.25],[False]*3],
+        'th_min':[[-1, -0.5, -0.25],[]],
         'th_min_en':True,
         'th_type':'percent'
     }
 ]
 
-def reset_alert_conditions(cond:dict):
-    print("reset_alert_conditions")
-    for i in cond:
-        j = 0
-        for _ in i['th_max'][1]:
-            i['th_max'][1][j] = False
-            j=j+1
-        j = 0
-        for _ in i['th_min'][1]:
-            i['th_min'][1][j] = False
-            j=j+1            
+def init_alert_conditions():
+    print("init_alert_conditions")
+    for i in alert_condtions:
+        false_list = [False] * len(i['th_max'][0])
+        i['th_max'][1] = false_list
+        false_list = [False] * len(i['th_min'][0])
+        i['th_min'][1] = false_list      
+    # print(cond)
 
 def download_stock():
     url = "https://mis.twse.com.tw/stock/api/getStockInfo.jsp?json=1&delay=0&ex_ch=tse_t00.tw|tse_00878.tw"
@@ -132,12 +129,12 @@ pre_state_in_stock = False
 def dowload_stock_tmr():
     stock = download_stock()
     if stock!= False:
-        # print("下載成功")
+        print("下載成功")
         cur_state_in_stock = is_in_trade_datetime(stock)
         global pre_state_in_stock
         if cur_state_in_stock == True:
             if  pre_state_in_stock == False:
-                reset_alert_conditions(alert_condtions)
+                init_alert_conditions()
             msg = check_stock_alert(stock)
             print(msg)
             if msg != '':
@@ -149,6 +146,7 @@ def dowload_stock_tmr():
     t.start()
 
 def main():
+    init_alert_conditions()
     dowload_stock_tmr()
 
 if __name__ == "__main__":
