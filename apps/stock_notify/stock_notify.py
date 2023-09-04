@@ -3,9 +3,9 @@ import threading
 alert_condtions = [
     {
         'ch':'t00.tw',
-        'th_max':[[50, 20],[False, False]],
+        'th_max':[[300, 200, 100, 50],[False, False, False, False]],
         'th_max_en':True,
-        'th_min':[[50, -20],[False, False]],
+        'th_min':[[-300, -200, -100, -50],[False, False, False, False]],
         'th_min_en':True,
         'th_type':'point'
     },
@@ -113,7 +113,9 @@ def is_in_trade_datetime(stock:dict)->bool:
 def send_line_notify(msg:str)->requests.Response:
     url = 'https://notify-api.line.me/api/notify'
     # 個人測試
-    token = 'r0OHCGAS0B06PrOPEudaMFk2ugFIQAcqDYDHazRiJxF'
+    # token = 'r0OHCGAS0B06PrOPEudaMFk2ugFIQAcqDYDHazRiJxF'
+    # FISS
+    token = 'yqB6couCMQlCtBDJpJb2nEw8yRepyeo8SWjQZJDDsqD'
     headers = {
         'Authorization': 'Bearer ' + token, # 設定權杖
     }
