@@ -3,18 +3,18 @@ import threading
 alert_condtions = [
     {
         'ch':'t00.tw',
-        'th_max':[[300, 200, 100, 50],[False, False, False, False]],
+        'th_max':[[300, 200, 100, 50],[False]*4],
         'th_max_en':True,
-        'th_min':[[-300, -200, -100, -50],[False, False, False, False]],
+        'th_min':[[-300, -200, -100, -50],[False]*4],
         'th_min_en':True,
         'th_type':'point'
     },
     {
         'ch':'00878.tw',
-        'th_max':[[2, 1],[False, False]],
-        'th_max_en':False,
-        'th_min':[[-2, -1],[False, False]],
-        'th_min_en':False,
+        'th_max':[[1, 0.5, 0.25],[False]*3],
+        'th_max_en':True,
+        'th_min':[[-1, -0.5, -0.25],[False]*3],
+        'th_min_en':True,
         'th_type':'percent'
     }
 ]
@@ -32,7 +32,7 @@ def reset_alert_conditions(cond:dict):
             j=j+1            
 
 def download_stock():
-    url = "https://mis.twse.com.tw/stock/api/getStockInfo.jsp?json=1&delay=0&ex_ch=tse_t00.tw"
+    url = "https://mis.twse.com.tw/stock/api/getStockInfo.jsp?json=1&delay=0&ex_ch=tse_t00.tw|tse_00878.tw"
     response = requests.get(url)
     if response.status_code == 200:
         stock = response.json()
@@ -132,7 +132,7 @@ pre_state_in_stock = False
 def dowload_stock_tmr():
     stock = download_stock()
     if stock!= False:
-        print("下載成功")
+        # print("下載成功")
         cur_state_in_stock = is_in_trade_datetime(stock)
         global pre_state_in_stock
         if cur_state_in_stock == True:
