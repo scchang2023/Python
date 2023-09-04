@@ -67,10 +67,8 @@ def check_stock_alert(stock:dict)->str:
                             if alerted == True:
                                 break
                             if val > th:
-                                if j['th_type'] == 'percent':
-                                    str = f"{n}: 目前 {z} 點, 大漲 {val} 趴\n"
-                                else:
-                                    str = f"{n}: 目前 {z} 點, 大漲 {val} 點\n"
+                                suffix = '趴' if j['th_type'] == 'percent' else '點'
+                                str = f"{n}: 目前 {z} 點, 大漲 {val} {suffix}\n"
                                 #print(str)
                                 msg+=str
                                 j['th_max'][1][k] = True
@@ -85,10 +83,8 @@ def check_stock_alert(stock:dict)->str:
                             if alerted == True:
                                 break
                             if val < th:
-                                if j['th_type'] == 'percent':
-                                    str = f"{n}: 目前 {z} 點, 大跌 {abs(val)} 趴\n"
-                                else:
-                                    str = f"{n}: 目前 {z} 點, 大跌 {abs(val)} 點\n"
+                                suffix = '趴' if j['th_type'] == 'percent' else '點'
+                                str = f"{n}: 目前 {z} 點, 大跌 {val} {suffix}\n"
                                 #print(str)
                                 msg+=str
                                 j['th_min'][1][k] = True
