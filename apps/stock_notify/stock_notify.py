@@ -84,7 +84,7 @@ def check_stock_alert(stock:dict)->str:
                                 break
                             if val < th:
                                 suffix = '趴' if j['th_type'] == 'percent' else '點'
-                                str = f"{n}: 目前 {z} 點, 大跌 {val} {suffix}\n"
+                                str = f"{n}: 目前 {z} 點, 大跌 {abs(val)} {suffix}\n"
                                 #print(str)
                                 msg+=str
                                 j['th_min'][1][k] = True
