@@ -3,9 +3,9 @@ import threading
 alert_condtions = [
     {
         'ch':'t00.tw',
-        'th_max':[[200, 100],[False, False]],
+        'th_max':[[50, 20],[False, False]],
         'th_max_en':True,
-        'th_min':[[-200, -100],[False, False]],
+        'th_min':[[50, -20],[False, False]],
         'th_min_en':True,
         'th_type':'point'
     },
@@ -127,12 +127,12 @@ def send_stock_msg_line_notify(msg:str)->requests.Response:
     return send_line_notify(msg)
 
 pre_state_in_stock = False
-cur_state_in_stock = False
 def dowload_stock_tmr():
     stock = download_stock()
     if stock!= False:
         print("下載成功")
         cur_state_in_stock = is_in_trade_datetime(stock)
+        global pre_state_in_stock
         if cur_state_in_stock == True:
             if  pre_state_in_stock == False:
                 reset_alert_conditions(alert_condtions)

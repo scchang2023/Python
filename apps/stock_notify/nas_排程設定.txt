@@ -1,0 +1,3 @@
+cd /volume1/py_env
+source bin/activate
+python /volume1/py_env/work/python_learning/apps/stock_notify/stock_notify.py
