@@ -31,3 +31,16 @@ import numpy as np
 # print(data[0:2, 1]) # [1, 4]
 
 # 使用 ... 代表我全都要
+data = np.array([
+    [
+        [8, 1, 3],
+        [-5, 5, 2]
+    ],
+    [
+        [0, 1, 6],
+        [4, 4, -3]
+    ]
+])
+print(data[0, ...])
+print("===")
+print(data[..., 1:3])
