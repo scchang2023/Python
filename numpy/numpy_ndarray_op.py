@@ -1,4 +1,5 @@
 import numpy as np
+
 # 逐元運算 (elementwise)
 # data1 = np.array([3, 2, 10])
 # data2 = np.array([1, 3, 6])
@@ -10,6 +11,7 @@ import numpy as np
 # print("大於 ", result)
 # result = data1 == data2
 # print("等於 ", result)
+
 # 矩陣運算 (matrix)
 # data1 = np.array([
 #     [1, 3]
@@ -23,13 +25,13 @@ import numpy as np
 # print("內積", result)
 # result = np.outer(data1, data2)
 # print("外積", result)
+
 # 統計運算 (statistics)
 # ndarray 多維陣列 簡稱陣列
 data = np.array([
     [2, 1, 7],
     [-5, 3, 8]
 ]) # 2x3
-
 # result = data.sum()
 # print("總和", result)
 # result = data.max()

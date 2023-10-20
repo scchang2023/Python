@@ -22,7 +22,7 @@ import numpy as np
 # print(data)
 # data = np.ones([2, 3])
 # print(data)
-#建立三維陣列
+# 建立三維陣列
 data = np.array([
     [
         [6, 8], [1, 4], [5, 6]
