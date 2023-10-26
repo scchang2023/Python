@@ -22,5 +22,10 @@ import pandas as pd
 # print("中位數", data.median())
 # print("最大三位數", data.nlargest(3))
 
-data = pd.Series([])
-# 字串運算：
+data = pd.Series(["你好","Python","Pandas"])
+# 字串運算：基本、串接、搜尋、取代
+# print(data.str.lower()) # 全部變小寫
+# print(data.str.len()) # 算出每個字串的長度
+# print(data.str.cat(sep=",")) # 把字串串起來
+# print(data.str.contains("P")) # 判斷字串裡是否有包含 P
+print(data.str.replace("您好", "Hello"))
