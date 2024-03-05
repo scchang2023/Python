@@ -9,8 +9,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
-USER_NAME = "F124785695"
-USER_PASSWORD = "chang0514"
+USER_NAME = "Fxxxxxx"
+USER_PASSWORD = "xxxxxx"
 
 import time
 # https://pypi.org/project/webdriver-manager/
